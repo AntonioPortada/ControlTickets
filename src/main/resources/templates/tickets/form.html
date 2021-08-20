@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+	<title th:text="${titulo}"></title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<header th:fragment="header">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/" th:text="${'Control de Tickets'}"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+</header>
+
+<div class="container">
+		<h1>Formulario para crear tickets</h1>
+
+		<form th:action="@{/tickets/form}" th:object="${ticket}" method="post">
+			<!-- <input type="text" th:field="*{fechaRegistro}" readonly/> --> 
+			<input type="text" placeholder="Titulo" th:field="*{titulo}" /> 
+			<input type="text" placeholder="Responsable" th:field="*{responsable}" />   
+			<input type="text" placeholder="Version" th:field="*{version}" />
+			<input type="text" placeholder="Descripcion" th:field="*{descripcion}" />
+			<input type="text" placeholder="Archivos" th:field="*{archivos}" />
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="estado">Estado</label>
+				</div>
+				<select class="custom-select" id="estado" th:field="*{estado}">
+					<option value="0" selected>Selecciona...</option>
+					<option value="Nuevo">Nuevo</option>
+					<option value="En Proceso">En Proceso</option>
+					<option value="Atendido">Atendido</option>
+				</select>
+			</div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="equipoResponsable">Equipo Responsable</label>
+				</div>
+				<select class="custom-select" id="equipoResponsable" th:field="*{equipoResponsable}">
+					<option value="0" selected>Selecciona...</option>
+					<option value="Soporte">Soporte</option>
+					<option value="Desarrollo">Desarrollo</option>
+					<option value="Atencion a Clientes">Atencion a Clientes</option>
+				</select>
+			</div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="tipoIncidencia">Tipo Incidencia</label>
+				</div>
+				<select class="custom-select" id="tipoIncidencia" th:field="*{tipoIncidencia}">
+					<option value="0" selected>Selecciona...</option>
+					<option value="Bug">Bug</option>
+					<option value="Feature">Feature</option>
+				</select>
+			</div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="gravedad">Gravedad</label>
+				</div>
+				<select class="custom-select" id="gravedad" th:field="*{gravedad}">
+					<option value="0" selected>Selecciona...</option>
+					<option value="High">High</option>
+					<option value="Medium">Medium</option>
+					<option value="Low">Low</option>
+				</select>
+			</div>
+			<input type="submit" class="btn btn-info" />
+			<input type="hidden" th:field="*{id}" />
+		</form>
+	</div>
+
+
+
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+
+<body>
+
+</body>
+</html>

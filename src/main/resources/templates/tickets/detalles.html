@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+	<title th:text="${titulo}"></title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+
+<header th:fragment="header">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/" th:text="${'Control de Tickets'}"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+</header>
+
+<div class="container">
+	<ul>
+		<li th:text="'ID: ' + ${ticket.id}"> </li>
+		<li th:text="'TITULO: ' + ${ticket.titulo}"> </li>
+		<!-- <li th:text="'REGISTRO: ' + ${#dates.format(ticket.fechaRegistro, 'dd/MM/yyyy')}"> </li> -->
+		<li th:text="'RESPONSABLE: ' + ${ticket.responsable}"> </li>
+		<li th:text="'EQUIPO RESPONSABLE: ' + ${ticket.equipoResponsable}"> </li>
+		<li th:text="'TIPO INCIDENCIA: ' + ${ticket.tipoIncidencia}"> </li>
+		<li th:text="'GRAVEDAD: ' + ${ticket.gravedad}"> </li>
+		<li th:text="'VERSION: ' + ${ticket.version}"> </li>
+		<li th:text="'DESCRIPCION: ' + ${ticket.descripcion}"> </li>
+		<li th:text="'ARCHIVOS: ' + ${ticket.archivos}"> </li>
+		<li th:text="'ESTADO: ' + ${ticket.estado}"> </li>
+		<li th:text="'ESTATUS: ' + ${ticket.estatus}"> </li>
+	</ul>
+	<a th:href="@{/}" class="btn btn-outline btn-danger">Regresar</a>
+</div>
+
+
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+
+</body>
+</html>
