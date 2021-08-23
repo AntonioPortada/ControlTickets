@@ -19,6 +19,10 @@
 </header>
 
 <div class="container">
+	<img th:alt="${ticket.archivos}" 
+	     th:src="@{'/upload/' + ${ticket.archivos}}"
+	     style="max-width: 25%"
+	     class="rounded pt-3">	
 	<ul>
 		<li th:text="'ID: ' + ${ticket.id}"> </li>
 		<li th:text="'TITULO: ' + ${ticket.titulo}"> </li>

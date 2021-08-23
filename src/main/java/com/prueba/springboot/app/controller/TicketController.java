@@ -1,11 +1,18 @@
 package com.prueba.springboot.app.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.prueba.springboot.app.entity.Ticket;
 import com.prueba.springboot.app.service.TicketServiceImp;
@@ -39,7 +46,23 @@ public class TicketController {
 	
 	//metodo post para guardar los datos
 	@PostMapping("tickets/form")
-	public String save(Ticket ticket, Model model) {
+	public String save(Ticket ticket, Model model, @RequestParam("file") MultipartFile file) {
+		
+		if(!file.isEmpty()) {
+			Path dr = Paths.get("src//main//resources//static//upload");
+			String rootPath = dr.toFile().getAbsolutePath();
+			
+			try {
+				byte[] bytes = file.getBytes();
+				Path rutaCompleta = Paths.get(rootPath +"//"+ file.getOriginalFilename());
+				Files.write(rutaCompleta, bytes);
+				
+				ticket.setArchivos(file.getOriginalFilename());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
 		
 		daoImp.save(ticket);
 		

@@ -19,13 +19,18 @@
 <div class="container">
 		<h1>Formulario para crear tickets</h1>
 
-		<form th:action="@{/tickets/form}" th:object="${ticket}" method="post">
+		<form th:action="@{/tickets/form}" th:object="${ticket}" method="post" enctype="multipart/form-data">
 			<!-- <input type="text" th:field="*{fechaRegistro}" readonly/> --> 
 			<input type="text" placeholder="Titulo" th:field="*{titulo}" /> 
 			<input type="text" placeholder="Responsable" th:field="*{responsable}" />   
 			<input type="text" placeholder="Version" th:field="*{version}" />
 			<input type="text" placeholder="Descripcion" th:field="*{descripcion}" />
-			<input type="text" placeholder="Archivos" th:field="*{archivos}" />
+			<div class="input-group mb-3">
+				<label for="file">Imagen</label>
+				<div>
+					<input type="file" name="file" class="form-control"/>
+				</div>
+			</div>
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<label class="input-group-text" for="estado">Estado</label>
